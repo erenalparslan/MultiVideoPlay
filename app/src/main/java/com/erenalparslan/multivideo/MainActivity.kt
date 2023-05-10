@@ -21,76 +21,60 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var playerView: PlayerView
     private lateinit var playerView1: PlayerView
-
+    private lateinit var playerView2: PlayerView
+    private lateinit var playerView3: PlayerView
+    private lateinit var playerView4: PlayerView
+    private lateinit var playerView5: PlayerView
+    private lateinit var playerView6: PlayerView
+    private lateinit var playerView7: PlayerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val widthPixels = displayMetrics.widthPixels
-        val heightPixels = displayMetrics.heightPixels
-        var videoWidth = 0
-        var videoHeight =0
-        var videoWidth1 = 0
-        var videoHeight1 = 0
-        var ratio=0
-        var ratio1=0
-        //println(widthPixels.toString()+"--"+heightPixels.toString())
+
 
         playerView = findViewById(R.id.player_view)
         playerView1 = findViewById(R.id.player_view1)
+        playerView2 = findViewById(R.id.player_view2)
+        playerView3 = findViewById(R.id.player_view3)
+        playerView4 = findViewById(R.id.player_view4)
+        playerView5 = findViewById(R.id.player_view5)
+        playerView6 = findViewById(R.id.player_view6)
+        playerView7 = findViewById(R.id.player_view7)
         val mediaItem = MediaItem.fromUri(Uri.parse(URL))
-
-        val player1 = ExoPlayer.Builder(this).build()
-        playerView1.player = player1
 
         val player = ExoPlayer.Builder(this).build()
         playerView.player = player
+        val player1 = ExoPlayer.Builder(this).build()
+        playerView1.player = player1
+        val player2 = ExoPlayer.Builder(this).build()
+        val player3 = ExoPlayer.Builder(this).build()
+        val player4 = ExoPlayer.Builder(this).build()
+        val player5 = ExoPlayer.Builder(this).build()
+        val player6 = ExoPlayer.Builder(this).build()
+        val player7 = ExoPlayer.Builder(this).build()
+
+        playerView2.player = player2
+        playerView3.player = player3
+        playerView4.player = player4
+        playerView5.player = player5
+        playerView6.player = player6
+        playerView7.player = player7
+
 
         playerSetter(player, mediaItem)
         playerSetter(player1, mediaItem)
-
-
-        player.addListener(object :Player.Listener{
-            override fun onVideoSizeChanged(videoSize: VideoSize) {
-                super.onVideoSizeChanged(videoSize)
-
-                 videoWidth = videoSize.width
-                 videoHeight = videoSize.height
-                 ratio = min(widthPixels / videoWidth!!, heightPixels / videoHeight!!)
-
-
-            }
-        })
-        val newWidth = (videoWidth * ratio)
-        val newHeight = (videoHeight * ratio)
-       // setCoordinate(playerView, 0, 0, newWidth, newHeight)
-
-        player1.addListener(object :Player.Listener{
-            override fun onVideoSizeChanged(videoSize: VideoSize) {
-                super.onVideoSizeChanged(videoSize)
-
-                 videoWidth1 = videoSize.width
-                 videoHeight1 = videoSize.height
-                 ratio1 = min(widthPixels / videoWidth1!!, heightPixels / videoHeight1!!)
-
-            }
-        })
-        val newWidth1 = (videoWidth1 * ratio1)
-        val newHeight1 = (videoHeight1 * ratio1)
-        setCoordinate(playerView1, 50, 50, newWidth1, newHeight1)
+        playerSetter(player2, mediaItem)
+        playerSetter(player3, mediaItem)
+        playerSetter(player4, mediaItem)
+        playerSetter(player5, mediaItem)
+        playerSetter(player6, mediaItem)
+        playerSetter(player7, mediaItem)
 
 
 
-
-
-        /*    setCoordinate(playerView,0,500,500,500)
-            setCoordinate(playerView1,0,700,500,500)*/
-
-
-
+           setCoordinate(playerView, 0, 0, 50, 50)
 
     }
 
@@ -108,7 +92,6 @@ class MainActivity : AppCompatActivity() {
         player.prepare()
         player.play()
     }
-
 
 
     companion object {
